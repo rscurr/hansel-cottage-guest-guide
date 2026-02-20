@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Hansel Cottage — Guest Guide</title>
+<style>
+  :root {
+    --dark: #2c2c2c;
+    --mid: #555;
+    --light-bg: #f4f4f2;
+    --card-bg: #ffffff;
+    --accent: #7a6a52;
+    --border: #e0ddd8;
+    --header-h: 58px;
+    --nav-h: 62px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+         background: var(--light-bg); color: var(--dark); min-height: 100vh; }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--header-h);
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 14px;
+  }
+  .hdr-logo {
+    width: 36px; height: 36px; border: 1.5px solid rgba(255,255,255,0.6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; color: #fff; letter-spacing: 0.5px;
+  }
+  .hdr-left, .hdr-right { display: flex; align-items: center; gap: 14px; }
+  .hdr-icon { color: rgba(255,255,255,0.85); cursor: pointer; }
+  .hdr-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor;
+                  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── BOTTOM NAV ── */
+  nav {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    background: #fff; border-top: 1px solid var(--border);
+    display: flex;
+  }
+  .nav-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px; cursor: pointer;
+    font-size: 10px; font-weight: 500; color: var(--mid);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-item.active { color: var(--dark); }
+  .nav-item svg { width: 22px; height: 22px; fill: none; stroke: currentColor;
+                  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-item.active svg { stroke: var(--dark); }
+
+  /* ── MAIN SCROLL AREA ── */
+  main {
+    padding-top: calc(var(--header-h) + 14px);
+    padding-bottom: calc(var(--nav-h) + 14px);
+    min-height: 100vh;
+  }
+
+  /* ── VIEWS ── */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ── HOME GRID ── */
+  .home-intro {
+    padding: 18px 16px 10px;
+    font-size: 22px; font-weight: 300; color: var(--dark);
+    letter-spacing: -0.3px; line-height: 1.3;
+  }
+  .home-intro span { font-weight: 600; }
+  .card-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-top: 12px;
+  }
+  .card {
+    background: var(--card-bg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 26px 12px 22px;
+    cursor: pointer; transition: background 0.15s;
+    min-height: 120px; text-align: center; text-decoration: none; color: inherit;
+  }
+  .card:active { background: #f0ede8; }
+  .card-icon { margin-bottom: 12px; color: var(--dark); }
+  .card-icon svg { width: 36px; height: 36px; fill: none; stroke: currentColor;
+                   stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .card-label {
+    font-size: 12.5px; font-weight: 500; color: var(--dark);
+    line-height: 1.35; letter-spacing: 0.1px;
+  }
+
+  /* ── SECTION PAGES ── */
+  .section-header {
+    background: var(--dark); color: #fff;
+    padding: 18px 16px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .back-btn {
+    cursor: pointer; color: rgba(255,255,255,0.8);
+    display: flex; align-items: center; gap: 5px;
+    font-size: 13px;
+  }
+  .back-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor;
+                  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .section-title { font-size: 17px; font-weight: 500; letter-spacing: 0.1px; }
+
+  .section-body { padding: 0 0 16px; }
+  .section-block {
+    background: #fff; margin: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .block-heading {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--accent);
+    padding: 12px 14px 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .block-content { padding: 12px 14px; }
+  .block-content p { font-size: 14px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .block-content p:last-child { margin-bottom: 0; }
+  .block-content ul { padding-left: 0; list-style: none; }
+  .block-content ul li {
+    font-size: 14px; line-height: 1.6; color: #333;
+    padding: 5px 0; border-bottom: 1px solid #f0ede8;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .block-content ul li:last-child { border-bottom: none; }
+  .block-content ul li::before { content: "—"; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+  .highlight-box {
+    background: #fdf8f2; border: 1px solid #e8d9c0;
+    border-radius: 2px; padding: 12px 14px; margin: 10px 14px;
+    font-size: 14px; line-height: 1.6; color: #333;
+  }
+  .highlight-box strong { color: var(--dark); }
+  .info-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 9px 0; border-bottom: 1px solid #f0ede8;
+    font-size: 14px; gap: 8px;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: var(--mid); font-size: 13px; flex-shrink: 0; min-width: 100px; }
+  .info-value { color: var(--dark); font-weight: 500; text-align: right; }
+  .emergency-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 2px;
+    margin: 8px 12px; padding: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .emergency-card .ec-icon { color: var(--accent); flex-shrink: 0; }
+  .emergency-card .ec-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor;
+                                  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .ec-title { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .ec-detail { font-size: 13px; color: var(--mid); margin-top: 1px; }
+  .ec-number { font-size: 15px; font-weight: 600; color: var(--accent); margin-top: 2px; }
+
+  /* place list */
+  .place-item {
+    padding: 10px 14px; border-bottom: 1px solid #f0ede8;
+    font-size: 14px; color: #333;
+  }
+  .place-item:last-child { border-bottom: none; }
+  .place-name { font-weight: 500; color: var(--dark); }
+  .place-note { font-size: 12.5px; color: var(--mid); margin-top: 2px; }
+
+  /* wifi box */
+  .wifi-box {
+    background: var(--dark); color: #fff;
+    margin: 14px 12px; padding: 18px;
+    text-align: center;
+  }
+  .wifi-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+                color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+  .wifi-ssid { font-size: 18px; font-weight: 600; margin-bottom: 14px; }
+  .wifi-pw-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+                   color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+  .wifi-pw { font-size: 24px; font-weight: 300; letter-spacing: 4px; }
+
+  /* map view */
+  .map-placeholder {
+    height: calc(100vh - var(--header-h) - var(--nav-h));
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; color: var(--mid); font-size: 14px;
+  }
+  .map-placeholder svg { width: 48px; height: 48px; fill: none; stroke: var(--border);
+                          stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+  .map-placeholder a { color: var(--accent); font-weight: 500; }
+
+  /* search */
+  .search-bar { padding: 12px; }
+  .search-input {
+    width: 100%; padding: 11px 14px;
+    border: 1px solid var(--border); background: #fff;
+    font-size: 15px; color: var(--dark); outline: none;
+    border-radius: 2px;
+  }
+  .search-results { padding: 0 12px 16px; }
+  .search-result-item {
+    background: #fff; border: 1px solid var(--border); border-radius: 2px;
+    padding: 12px 14px; margin-bottom: 8px; cursor: pointer;
+  }
+  .search-result-item:active { background: #f0ede8; }
+  .sri-section { font-size: 11px; color: var(--accent); text-transform: uppercase;
+                 letter-spacing: 0.8px; margin-bottom: 3px; }
+  .sri-text { font-size: 13.5px; color: #333; line-height: 1.5; }
+  .sri-text em { background: #fff0cc; font-style: normal; }
+  .no-results { text-align: center; color: var(--mid); padding: 40px 20px; font-size: 14px; }
+
+  @media (min-width: 420px) {
+    .card-grid { max-width: 420px; margin-left: auto; margin-right: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-left">
+    <div class="hdr-logo">HC</div>
+    <div class="hdr-icon" onclick="window.location.href='mailto:07886337240@sms.gateway.com'" title="Message host">
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </div>
+    <div class="hdr-icon" onclick="window.location.href='tel:07886337240'" title="Call host">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div class="hdr-icon" onclick="navigator.share ? navigator.share({title:'Hansel Cottage Guest Guide',url:window.location.href}) : alert('Copy this page URL to share.')" title="Share">
+      <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    </div>
+    <div class="hdr-icon" onclick="window.print()" title="Print">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ════════════════ HOME VIEW ════════════════ -->
+<div id="view-home" class="view active">
+  <div class="home-intro">Welcome to<br><span>Hansel Cottage</span></div>
+  <div class="card-grid">
+
+    <div class="card" onclick="showSection('welcome')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M18 11V6l-6-4L6 6v5"/><rect x="2" y="11" width="20" height="11" rx="1"/><path d="M9 22V12h6v10"/></svg></div>
+      <div class="card-label">Welcome</div>
+    </div>
+
+    <div class="card" onclick="showSection('checkout')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+      <div class="card-label">Before You Leave</div>
+    </div>
+
+    <div class="card" onclick="showSection('arrival')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+      <div class="card-label">Arrival &amp; Check-In</div>
+    </div>
+
+    <div class="card" onclick="showSection('about')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="card-label">About the Cottage</div>
+    </div>
+
+    <div class="card" onclick="showSection('utilities')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg></div>
+      <div class="card-label">Utilities &amp; Heating</div>
+    </div>
+
+    <div class="card" onclick="showSection('appliances')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="card-label">Appliances &amp; TV</div>
+    </div>
+
+    <div class="card" onclick="showSection('wifi')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+      <div class="card-label">WiFi &amp; Phones</div>
+    </div>
+
+    <div class="card" onclick="showSection('safety')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="card-label">Safety &amp; House Rules</div>
+    </div>
+
+    <div class="card" onclick="showSection('dogs')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2 .336-3.5 2.098-3.5 3.99V9a2 2 0 002 2h1.5"/><path d="M14.5 11H16a2 2 0 002-2V6.99c0-1.892-1.5-3.654-3.5-3.99C12.577 2.679 11 3.782 11 5.172"/><path d="M5 14c0 3.866 3.134 7 7 7s7-3.134 7-7v-2.5a1.5 1.5 0 00-3 0V14a4 4 0 01-8 0v-2.5a1.5 1.5 0 00-3 0V14z"/></svg></div>
+      <div class="card-label">Dogs Welcome</div>
+    </div>
+
+    <div class="card" onclick="showSection('emergency')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+      <div class="card-label">Useful Contacts</div>
+    </div>
+
+    <div class="card" onclick="showSection('eating')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="2" x2="8" y2="6"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><path d="M18 6H6a1 1 0 00-1 1v4a5 5 0 005 5h4a5 5 0 005-5V7a1 1 0 00-1-1z"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></div>
+      <div class="card-label">Eating &amp; Drinking Out</div>
+    </div>
+
+    <div class="card" onclick="showSection('area')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 018 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 018-8z"/></svg></div>
+      <div class="card-label">The Local Area</div>
+    </div>
+
+    <div class="card" onclick="showSection('beaches')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><path d="M18 8c0 3-2 5-6 6"/><path d="M22 8c-1.5 5-5 8-10 9"/><path d="M3 20c2-4 5-7 9-8"/></svg></div>
+      <div class="card-label">Beaches</div>
+    </div>
+
+    <div class="card" onclick="showSection('walks')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M15.89 8.11A2 2 0 0014 7h-4a2 2 0 00-1.95 1.55L7 13h2l1 8h4l1-8h2l-1.11-4.89z"/></svg></div>
+      <div class="card-label">Walks &amp; Activities</div>
+    </div>
+
+    <div class="card" onclick="showSection('history')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+      <div class="card-label">History of the Cottage</div>
+    </div>
+
+    <div class="card" onclick="showSection('favourites')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div class="card-label">Our Family Favourites</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════ INFO VIEW ════════════════ -->
+<div id="view-info" class="view">
+  <div class="section-block" style="margin-top:0; border-left:none; border-right:none; border-top:none;">
+    <div class="block-heading">Quick Info</div>
+    <div class="block-content">
+      <div class="info-row"><span class="info-label">Check-in</span><span class="info-value">From 4pm</span></div>
+      <div class="info-row"><span class="info-label">Check-out</span><span class="info-value">By 10am</span></div>
+      <div class="info-row"><span class="info-label">WiFi Password</span><span class="info-value" style="letter-spacing:2px;">12345678</span></div>
+      <div class="info-row"><span class="info-label">Landline</span><span class="info-value">01803 906644</span></div>
+      <div class="info-row"><span class="info-label">Host (WhatsApp)</span><span class="info-value">07886 337240</span></div>
+      <div class="info-row"><span class="info-label">Website</span><span class="info-value"><a href="https://www.hanselcottage.com" style="color:var(--accent)">hanselcottage.com</a></span></div>
+      <div class="info-row"><span class="info-label">Rubbish Day</span><span class="info-value">Fridays</span></div>
+      <div class="info-row"><span class="info-label">EV Charger</span><span class="info-value">7kW on driveway</span></div>
+    </div>
+  </div>
+  <div style="padding: 10px 12px;">
+    <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--mid); margin-bottom:8px;">All Sections</div>
+    <div id="info-section-list"></div>
+  </div>
+</div>
+
+<!-- ════════════════ MAP VIEW ════════════════ -->
+<div id="view-map" class="view">
+  <div class="map-placeholder">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 018 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 018-8z"/></svg>
+    <p>Hansel Cottage, Slapton, South Devon</p>
+    <a href="https://maps.google.com/?q=Hansel+Cottage+Slapton+Devon" target="_blank">Open in Google Maps</a>
+    <a href="https://maps.apple.com/?q=Hansel+Cottage+Slapton+Devon" target="_blank">Open in Apple Maps</a>
+  </div>
+</div>
+
+<!-- ════════════════ SEARCH VIEW ════════════════ -->
+<div id="view-search" class="view">
+  <div class="search-bar">
+    <input class="search-input" type="search" placeholder="Search the guide…" id="search-input" oninput="doSearch(this.value)">
+  </div>
+  <div class="search-results" id="search-results"></div>
+</div>
+
+<!-- ════════════════ SECTION VIEWS ════════════════ -->
+
+<!-- WELCOME -->
+<div id="section-welcome" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Welcome</div>
+  </div>
+  <div class="section-body">
+    <div class="highlight-box">
+      Welcome to <strong>Hansel Cottage</strong>. We hope you have a wonderful holiday. We hope that you find this guide helpful during your stay.
+    </div>
+    <div class="section-block">
+      <div class="block-heading">About This Guide</div>
+      <div class="block-content">
+        <p>This digital guide contains everything you need to know about the cottage, its appliances, the local area and what to do if something goes wrong.</p>
+        <p>Use the <strong>Home</strong> button below to browse by category, or use <strong>Search</strong> to find something specific.</p>
+        <p>Our host number for WhatsApp or calls is <strong>07886 337240</strong>. Please don't hesitate to get in touch if you need anything.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Key Details at a Glance</div>
+      <div class="block-content">
+        <div class="info-row"><span class="info-label">Check-in</span><span class="info-value">From 4pm</span></div>
+        <div class="info-row"><span class="info-label">Check-out</span><span class="info-value">By 10am</span></div>
+        <div class="info-row"><span class="info-label">WiFi Password</span><span class="info-value" style="letter-spacing:2px">12345678</span></div>
+        <div class="info-row"><span class="info-label">Host / WhatsApp</span><span class="info-value">07886 337240</span></div>
+        <div class="info-row"><span class="info-label">Landline</span><span class="info-value">01803 906644</span></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Follow Us</div>
+      <div class="block-content">
+        <p>Check in or follow the <strong>Hansel Cottage Facebook page</strong> at <a href="https://facebook.com/hanselcottagedevon" style="color:var(--accent)">facebook.com/hanselcottagedevon</a> for local events, recommendations and beautiful photos. We love to see your dog photos and wildlife spots!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARRIVAL -->
+<div id="section-arrival" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Arrival &amp; Check-In</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">Check-In Time</div>
+      <div class="block-content"><p>Check-in is from <strong>4pm</strong>. If you need to arrive earlier, please contact us and we'll do our best to accommodate you.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Keys</div>
+      <div class="block-content"><p>Your keys will be available in the <strong>key safe</strong> at the property. Your access code will be sent to you separately. On departure, please return keys to the key safe.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Getting Here</div>
+      <div class="block-content">
+        <p>Hansel Cottage is located in the hamlet of Hansel, near Slapton in the South Hams, Devon.</p>
+        <p><a href="https://maps.google.com/?q=Hansel+Cottage+Slapton+Devon" style="color:var(--accent)">Open in Google Maps →</a></p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Parking</div>
+      <div class="block-content"><p>There is parking available in the parking area at the property. The EV charger (7kW) is also located on the driveway — please see the Utilities section for charging instructions.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div id="section-checkout" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Before You Leave</div>
+  </div>
+  <div class="section-body">
+    <div class="highlight-box"><strong>Check-out is 10am.</strong> Our housekeeper needs the full day to prepare for the next guests — thank you for helping us keep the cottage at its best.</div>
+    <div class="section-block">
+      <div class="block-heading">Departure Checklist</div>
+      <div class="block-content">
+        <ul>
+          <li>Empty the fridge and bread bin</li>
+          <li>Ensure all crockery, glasses and cookware are washed or left in the running dishwasher</li>
+          <li>Check all rooms for belongings — especially hooks on backs of doors, the downstairs coat cupboard and utility room</li>
+          <li>Return books and maps to the bookshelves</li>
+          <li>Log out of Netflix, Amazon Prime or any other streaming accounts</li>
+          <li>Place all rubbish in black sacks and put in the grey wheelie bin</li>
+          <li>Check the garden and remove any dog stools (place in a large black bin bag)</li>
+          <li>Close all windows and lock all doors</li>
+          <li>Return keys to the key safe</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Rubbish</div>
+      <div class="block-content"><p>All rubbish must be in <strong>black sacks</strong> in the grey wheelie bin. Our private collection service recycles everything, but will not take loose rubbish. <strong>Rubbish is collected on Fridays.</strong></p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Emergency Sheets</div>
+      <div class="block-content"><p>Emergency sheets are provided in the utility room. If used, please wash, dry and return them to the same cupboard.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="section-about" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">About the Cottage</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">The Property</div>
+      <div class="block-content">
+        <p>Hansel Cottage is a beautiful historic property in the hamlet of Hansel, near Slapton in the South Hams. It sits in a valley with wonderful views and wonderful walking directly from the garden.</p>
+        <p>The cottage features multiple living areas, a walled garden (very sunny in the morning), a large hillside garden with valley views, and an adjoining games room (the original pigsty).</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Gardens</div>
+      <div class="block-content">
+        <p><strong>Walled Garden</strong> — Accessed through the Dining Hall stable door, this garden is fully enclosed and very sunny in the morning.</p>
+        <p><strong>Hillside Garden</strong> — Accessed from the kitchen or parking area. Wonderful valley views, wooded areas perfect for den building. Fully fenced for dogs. Some parts are steep — mown paths show the easiest routes.</p>
+        <p><strong>Terrace</strong> — Very sunny from late morning until sunset. Surface is uneven in places — please take care.</p>
+        <p>Please stay away from trees in windy weather — rocky terrain means roots can be shallow.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Amenities</div>
+      <div class="block-content">
+        <ul>
+          <li>Games room (former pigsty) with pool table and table tennis</li>
+          <li>Board games and toys in Dining Hall chest of drawers</li>
+          <li>Maps and local interest books on the Dining Hall bookshelves</li>
+          <li>Children's books in the small bedroom</li>
+          <li>Hairdryers provided in every bedroom</li>
+          <li>Bath and hand towel for each person (please bring own beach towels)</li>
+          <li>Baby &amp; children's equipment — high chair, fire guards, travel cot (large bedroom cupboard)</li>
+          <li>Children's crockery in the pantry</li>
+          <li>Bluetooth speakers in Dining Hall, Snug and Upstairs Sitting Room</li>
+          <li>Barbecue in the old hog pen (bring your own charcoal)</li>
+          <li>7kW EV charger on the driveway</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Pool Table &amp; Table Tennis</div>
+      <div class="block-content"><p>Pool shots must be taken carefully so as not to scrape and rip the cloth. Please supervise small children. Please do not move the tables.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Barbecue</div>
+      <div class="block-content"><p>The barbecue is in the old hog pen adjoining the garden terrace. You will need to bring charcoal. Please clean it with the wire brush while still hot. Barbecue implements are in the utility room. Note: the housekeeper does not clean the barbecue.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Outdoor Furniture</div>
+      <div class="block-content"><p>Cushions are in the pigsty games room. Please do not leave them out if rain is expected — they are not waterproof.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Locked Cupboards</div>
+      <div class="block-content"><p>There are three locked cupboards containing owners' and housekeepers' belongings and supplies — nothing exciting!</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Damage</div>
+      <div class="block-content"><p>Please report any damaged or worn items so we can arrange replacements. You will not be charged for normal wear and tear or minor breakages of china or glassware.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- UTILITIES -->
+<div id="section-utilities" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Utilities &amp; Heating</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">Water</div>
+      <div class="block-content">
+        <p>The water supply comes from a <strong>spring higher up the hill</strong>. There is a UV filter under the kitchen sink — the light indicates it is working and is checked weekly. <strong>Only water from the kitchen tap is safe to drink.</strong></p>
+        <p>If large baths and long showers are taken close together, the spring may not replenish fast enough and there will be no cold water in the bathrooms. If this happens:</p>
+        <ul>
+          <li>Stop using water for 30 minutes</li>
+          <li>Turn all cold taps ¾ on — they will splutter as the replenished tank forces air out</li>
+          <li>When running freely, turn them off and use as normal</li>
+          <li>Do not leave the cottage with taps open</li>
+        </ul>
+        <p>The <strong>stop-cock</strong> (emergency water shut-off) is at the back of the cupboard under the hob in the kitchen.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Heating &amp; Hot Water</div>
+      <div class="block-content">
+        <p>Heating and hot water are <strong>pre-programmed</strong>. To boost either, use the controls in the dining hall. Turn the dial and click the centre to select hot water or heating, then turn to the desired setting and click to confirm.</p>
+        <p>Hot water is kept at <strong>60°C</strong> to prevent legionnaires disease — please take care with hot taps.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Heated Towel Rails</div>
+      <div class="block-content">
+        <p><strong>Downstairs bathroom &amp; ensuite:</strong> In winter, connected to central heating. If heating electrically: switch on at the fuse panel outside the room, then press the power button until it lights red. Use + / – on the control panel to adjust temperature. Rails switch off automatically overnight.</p>
+        <p><strong>Upstairs shower room:</strong> Not connected to central heating. Use the labelled switch outside the room. Switch on at fuse panel, press power button until red. Also switches off automatically overnight.</p>
+        <p>Please switch off towel rails when not in use.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Electricity</div>
+      <div class="block-content"><p>The fuse board is in the kitchen above the back door. The electric meter is located above the external kitchen door.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Drains &amp; Septic Tank</div>
+      <div class="block-content">
+        <p>The cottage is on a <strong>septic tank</strong>. Only natural waste and toilet paper can be flushed. Do not flush sanitary products, wipes (including "flushable" ones) or nappies. We will need to charge for any drain unblocking costs.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">EV Charging</div>
+      <div class="block-content">
+        <p>There is a dedicated <strong>7kW EV charger</strong> on the driveway. It is strictly forbidden to charge from any other electrical outlet — this invalidates insurance and could overload the system.</p>
+        <p>To use: plug in both ends (you will need your own Type 2 charging lead), then scan the QR code or visit <a href="https://app.fuuse.io/pay/CS0018" style="color:var(--accent)">app.fuuse.io/pay/CS0018</a> to enter payment details. Charging begins once payment is accepted.</p>
+        <p>For issues contact us on WhatsApp: <strong>07886 337240</strong></p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Emergency Torches</div>
+      <div class="block-content"><p>Six emergency torches are plugged in around the house. They act as night lights and activate in a power failure. Please do not remove them or let children play with them. They have multiple modes — adjust with the side switch if the light is annoying.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- APPLIANCES -->
+<div id="section-appliances" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Appliances &amp; TV</div>
+  </div>
+  <div class="section-body">
+    <div class="highlight-box">Full appliance manuals are in the <strong>top drawer of the chest of drawers in the Dining Hall</strong>.</div>
+    <div class="section-block">
+      <div class="block-heading">Oven</div>
+      <div class="block-content"><p>The oven has a grill and two ovens. On the main lower oven, press the <strong>clock button</strong> for the heat to start working. The main lower oven is a fan oven.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Induction Hob</div>
+      <div class="block-content">
+        <p>Not all pans work on the induction hob. If the hob control buttons flash, the pan is not suitable. If you see a flashing <strong>E</strong>, the hob is too wet — dry it off and try again.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Coffee Machine</div>
+      <div class="block-content">
+        <p>Use <strong>espresso coffee only</strong> (e.g. Lavazza Quality Rossa). Using other types could break the machine.</p>
+        <p>Instructions: Fill water vessel at back. Insert metal receptacle into espresso arm, click into place. Add espresso coffee and tamp down. Twist arm from "Insert" to "Close". Press power button on right side and wait for lights to stop flashing. Press single or double cup button for your shot.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Rayburn (Winter Only)</div>
+      <div class="block-content">
+        <p>The electrically heated Rayburn is switched on for winter bookings only. It is set to ambient temperature (setting 4) on a timer and switches off automatically overnight.</p>
+        <p>At setting 4, the top oven is ~140°C — ideal for slow cooking. To increase temperature, open the top left door and adjust the dial. <strong>Return to setting 4 after cooking.</strong> Use oven gloves at all times. Do not leave the hob on or the oven above setting 4 for extended periods.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Wood Burning Stove — Dining Hall</div>
+      <div class="block-content">
+        <p>Place two flat logs in the bottom. Build a jenga-style tower on top. Add fire lighters and light them. Open both air control sliders fully and leave the door ajar for 2 minutes. Close the door but keep sliders open. When fire is going well, close sliders to slow and intensify the burn.</p>
+        <p><strong>Do not touch the pole lever at the back of the stove</strong> — this closes the chimney flue and will cause smoke to backfill into the room.</p>
+        <p>If leaving (going out or to bed), open sliders so the fire burns out quickly.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Wood Burning Stove — Snug</div>
+      <div class="block-content">
+        <p>Pull both the Primary (right) and Secondary (left) air control levers fully out and leave the door ajar for 2 minutes. Close door but leave levers out. When the first log is well alight, leave the primary (right) at 50% out and push the secondary (left) in.</p>
+        <p>Adjust burn speed with the left lever. If leaving, pull the left lever fully out. Do not leave the right lever fully out — it can overheat the stove.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Logs — Important</div>
+      <div class="block-content">
+        <p><strong>Only use logs from the courtyard log store.</strong> Logs stored in the garden are not seasoned and may produce toxic gases. Do not leave the log basket near lit stoves.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Electric Stove (Upstairs Sitting Room)</div>
+      <div class="block-content"><p>Switch on the wall to the left of the fireplace, and another on the right side of the stove. Can be used for atmosphere only (wood-burning effect) or with the fan heater for warmth. Do not leave the fan heater on when the room is unoccupied.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Washing Machine &amp; Tumble Dryer</div>
+      <div class="block-content"><p>Both are in the utility room. The tumble dryer is a condensing model — <strong>empty the water tank between loads</strong> and remove fluff from the filter after each load. The washing machine manual is in the Dining Hall drawer.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">TV &amp; DVD (Upstairs Sitting Room)</div>
+      <div class="block-content">
+        <p><strong>Normal TV:</strong> Use the LG remote, press the top power button, then press GUIDE for programme listings.</p>
+        <p><strong>DVD:</strong> Press Eject (Sony remote or on the player), insert DVD, press Eject again to close. If it doesn't autoplay, press the source button on the right side of the LG remote.</p>
+        <p><strong>Smart Apps:</strong> Log into your own Netflix/Prime accounts via the Home button on the LG remote. Remember to log out at the end of your stay.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Bluetooth Speakers</div>
+      <div class="block-content"><p>Speakers are in the Dining Hall (above the cocktail cabinet), the Snug and Upstairs Sitting Room. Press power and wait for the tone. Then hold the Bluetooth button to enter pairing mode. On your device, select <strong>"SoundCore 2"</strong>. Please do not move the speakers.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- WIFI -->
+<div id="section-wifi" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">WiFi &amp; Phones</div>
+  </div>
+  <div class="section-body">
+    <div class="wifi-box">
+      <div class="wifi-label">WiFi Password</div>
+      <div class="wifi-pw">12345678</div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Landline</div>
+      <div class="block-content">
+        <p>The landline number is <strong>01803 906644</strong>. Local and national calls under one hour are free. Any other calls must be paid for.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Mobile Phones</div>
+      <div class="block-content">
+        <p>There is <strong>no mobile signal</strong> at the cottage. Walk a few yards up the road to get signal.</p>
+        <p>You can switch your phone to <strong>WiFi calling</strong> in your phone settings to receive calls inside the cottage over the WiFi.</p>
+        <p>Please do not leave phones charging overnight — it is a fire hazard.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SAFETY -->
+<div id="section-safety" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Safety &amp; House Rules</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">House Rules</div>
+      <div class="block-content">
+        <ul>
+          <li>No smoking or vaping anywhere on the property</li>
+          <li>No candles or naked flames inside the cottage</li>
+          <li>No fireworks</li>
+          <li>Keep noise levels down after 10pm and before 8am</li>
+          <li>Do not charge vehicles from any outlet other than the dedicated EV charger</li>
+          <li>Do not flush wipes, sanitary products or nappies</li>
+          <li>Do not leave phones charging overnight</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Fire — What to Do</div>
+      <div class="block-content">
+        <p>If you discover a fire, <strong>evacuate immediately</strong> and call <strong>999</strong>. You may need to walk up the lane for mobile signal, or ask a neighbour.</p>
+        <p><strong>Do not try to fight the fire</strong> unless someone is trapped.</p>
+        <p>The <strong>fire assembly point</strong> is at the top of the drive.</p>
+        <p>There are <strong>three exits:</strong></p>
+        <ul>
+          <li>Front door (Dining Hall → front walled garden → white picket gate) — closest to first floor bedrooms</li>
+          <li>Door to the parking area — closest to ground floor bedroom</li>
+          <li>Kitchen door</li>
+        </ul>
+        <p>Guests with limited mobility should use the ground floor bedroom (shortest exit route). All external doors have thumb turn locks — do not use mortice locks at night.</p>
+        <p>If fire traps you upstairs, retreat to the furthest bedroom and close the door to await rescue.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Fire Safety Equipment</div>
+      <div class="block-content">
+        <ul>
+          <li>Fire blanket in the kitchen</li>
+          <li>Fire extinguishers at the top and bottom of both staircases</li>
+          <li>Six emergency torches plugged in around the house</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Neighbours</div>
+      <div class="block-content"><p>Our neighbours include people, farm animals and wildlife. Please be considerate of all of them. Keep noise levels down after 10pm and before 8am.</p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Problems During Your Stay</div>
+      <div class="block-content"><p>If any problems arise please let us know as soon as possible. We can often send tradespeople and replacement items within 24 hours.</p><p>Contact us via WhatsApp or call: <strong>07886 337240</strong></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- DOGS -->
+<div id="section-dogs" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Dogs Welcome</div>
+  </div>
+  <div class="section-body">
+    <div class="highlight-box">We hope the four-legged members of your family have as much fun on holiday as the two-legged ones!</div>
+    <div class="section-block">
+      <div class="block-heading">At the Cottage</div>
+      <div class="block-content">
+        <ul>
+          <li>Please do not leave dogs unattended in the cottage</li>
+          <li>Dog bowls and towels are in the utility room — please wash any dog towels used</li>
+          <li>We prefer dogs to be kept out of bedrooms and off furniture — use your own clean throws to protect furniture and bedding if needed</li>
+          <li>Please close garden gates before letting your dog run around — there may be sheep nearby</li>
+          <li>Remove all dog stools from the garden before leaving (place in a large black bin bag)</li>
+          <li>There is a hose on the drive for washing muddy dogs — use the provided doggy towel to dry them</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">The Local Loop Walk (from the cottage)</div>
+      <div class="block-content">
+        <p>A mainly off-road route direct from the bottom garden gate. Turn left out of the gate and follow the lane down to the river. Cross the bridge and follow the track up the other side of the valley. At the tarmac lane turn right and follow along the valley to a second bridge. Cross and follow the track back up the hill. At the junction, turn left to return to the garden gate. About <strong>30–40 minutes, steep in places.</strong></p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Year-Round Dog-Friendly Beaches</div>
+      <div class="block-content">
+        <ul>
+          <li>Slapton Sands and Torcross</li>
+          <li><strong>Strete Gate</strong> — our favourite: large, usually quiet, safely away from roads</li>
+          <li>Beesands</li>
+          <li>Mill Bay, East Portlemouth</li>
+          <li>Sugary Cove, Dartmouth</li>
+          <li>North Sands, Salcombe (low tide only)</li>
+          <li>South Milton Sands, Thurlestone</li>
+          <li>Bantham (low tide only)</li>
+          <li>Bigbury</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Dog-Friendly Pubs</div>
+      <div class="block-content"><p>We do not know of any local pubs that are not dog friendly!</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- EMERGENCY -->
+<div id="section-emergency" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Useful Contacts</div>
+  </div>
+  <div class="section-body">
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+      <div>
+        <div class="ec-title">Your Host</div>
+        <div class="ec-detail">WhatsApp or call anytime</div>
+        <div class="ec-number"><a href="tel:07886337240" style="color:inherit">07886 337240</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div>
+        <div class="ec-title">Emergency — Fire, Ambulance, Police</div>
+        <div class="ec-number"><a href="tel:999" style="color:inherit">999</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg></div>
+      <div>
+        <div class="ec-title">Non-Emergency Medical (NHS 111)</div>
+        <div class="ec-number"><a href="tel:111" style="color:inherit">111</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/></svg></div>
+      <div>
+        <div class="ec-title">Non-Emergency Police</div>
+        <div class="ec-number"><a href="tel:101" style="color:inherit">101</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div>
+        <div class="ec-title">A&amp;E — Torbay Hospital, Torquay</div>
+        <div class="ec-detail">Lowes Bridge, Torquay TQ2 7AA</div>
+        <div class="ec-number"><a href="tel:01803614567" style="color:inherit">01803 614567</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div>
+        <div class="ec-title">Minor Injuries — South Hams Hospital</div>
+        <div class="ec-detail">Plymouth Road, Kingsbridge TQ7 1AT (not 24hrs)</div>
+        <div class="ec-number"><a href="tel:01548852349" style="color:inherit">01548 852349</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div>
+        <div class="ec-title">Urgent Dental — Access Dental</div>
+        <div class="ec-number"><a href="tel:03330063300" style="color:inherit">03330 063 300</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2 .336-3.5 2.098-3.5 3.99V9a2 2 0 002 2h1.5"/><path d="M14.5 11H16a2 2 0 002-2V6.99c0-1.892-1.5-3.654-3.5-3.99C12.577 2.679 11 3.782 11 5.172"/><path d="M5 14c0 3.866 3.134 7 7 7s7-3.134 7-7v-2.5a1.5 1.5 0 00-3 0V14a4 4 0 01-8 0v-2.5a1.5 1.5 0 00-3 0V14z"/></svg></div>
+      <div>
+        <div class="ec-title">Vet — South Moor Vets, Kingsbridge</div>
+        <div class="ec-detail">Derby Road, Kingsbridge TQ7 1JL</div>
+        <div class="ec-number"><a href="tel:01548852766" style="color:inherit">01548 852766</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2 .336-3.5 2.098-3.5 3.99V9a2 2 0 002 2h1.5"/><path d="M14.5 11H16a2 2 0 002-2V6.99c0-1.892-1.5-3.654-3.5-3.99C12.577 2.679 11 3.782 11 5.172"/><path d="M5 14c0 3.866 3.134 7 7 7s7-3.134 7-7v-2.5a1.5 1.5 0 00-3 0V14a4 4 0 01-8 0v-2.5a1.5 1.5 0 00-3 0V14z"/></svg></div>
+      <div>
+        <div class="ec-title">Vet — Selworthy Vets, Kingsbridge</div>
+        <div class="ec-detail">Stumpy Post Surgery, Kingsbridge TQ7 4BL</div>
+        <div class="ec-number"><a href="tel:01548853322" style="color:inherit">01548 853322</a></div>
+      </div>
+    </div>
+    <div class="emergency-card">
+      <div class="ec-icon"><svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg></div>
+      <div>
+        <div class="ec-title">Cottage Landline</div>
+        <div class="ec-number"><a href="tel:01803906644" style="color:inherit">01803 906644</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EATING OUT -->
+<div id="section-eating" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Eating &amp; Drinking Out</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">Nearby Pubs &amp; Restaurants</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">The Tower Inn, Slapton</div><div class="place-note"><a href="https://www.thetowerinn.com" style="color:var(--accent)">thetowerinn.com</a> — Wonderful courtyard, log fires in winter</div></div>
+        <div class="place-item"><div class="place-name">The Cricket Inn, Beesands</div><div class="place-note"><a href="https://www.thecricketinn.com" style="color:var(--accent)">thecricketinn.com</a> — Superb food, pub for special occasions</div></div>
+        <div class="place-item"><div class="place-name">Start Bay Inn, Torcross</div><div class="place-note"><a href="https://www.startbayinn.co.uk" style="color:var(--accent)">startbayinn.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">The Kings Arms, Strete</div><div class="place-note"><a href="https://kingsarmsatstrete.co.uk" style="color:var(--accent)">kingsarmsatstrete.co.uk</a> — Great views, local art on the walls. 45-min walk from cottage</div></div>
+        <div class="place-item"><div class="place-name">Church House Inn, Stokenham</div><div class="place-note"><a href="https://churchhouseinnstokenham.co.uk" style="color:var(--accent)">churchhouseinnstokenham.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Britannia at the Beach, Beesands</div><div class="place-note"><a href="https://britanniaatthebeach.co.uk" style="color:var(--accent)">britanniaatthebeach.co.uk</a> — Seafood by the sea, eat in or takeaway at beachside tables</div></div>
+        <div class="place-item"><div class="place-name">Blackpool Sands Cafe</div><div class="place-note"><a href="https://www.blackpoolsands.co.uk" style="color:var(--accent)">blackpoolsands.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Trattoria Spiaggia, Stoke Fleming</div><div class="place-note">Italian restaurant</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Dartmouth</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">The Seahorse</div><div class="place-note"><a href="https://seahorserestaurant.co.uk" style="color:var(--accent)">seahorserestaurant.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Taylor's Restaurant</div><div class="place-note"><a href="https://taylorsrestaurant.co.uk" style="color:var(--accent)">taylorsrestaurant.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Rockfish</div><div class="place-note"><a href="https://therockfish.co.uk" style="color:var(--accent)">therockfish.co.uk</a></div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Kingsbridge, Salcombe &amp; Beyond</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Twenty Seven by Jamie Rogers, Kingsbridge</div><div class="place-note"><a href="https://27devon.co.uk" style="color:var(--accent)">27devon.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Winking Prawn, Salcombe</div><div class="place-note"><a href="https://winkingprawngroup.co.uk" style="color:var(--accent)">winkingprawngroup.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Beachhouse, South Milton Sands</div><div class="place-note"><a href="https://beachhousedevon.com" style="color:var(--accent)">beachhousedevon.com</a></div></div>
+        <div class="place-item"><div class="place-name">Hope &amp; Anchor, Hope Cove</div><div class="place-note"><a href="https://hopeandanchor.co.uk" style="color:var(--accent)">hopeandanchor.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">The Cove, Hope Cove</div><div class="place-note"><a href="https://thecovedevon.co.uk" style="color:var(--accent)">thecovedevon.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">The Sloop Inn, Bantham</div><div class="place-note"><a href="https://thesloop.co.uk" style="color:var(--accent)">thesloop.co.uk</a></div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Food Shopping</div>
+      <div class="block-content">
+        <ul>
+          <li><strong>Slapton Community Shop</strong> — nearest, closes 1pm most days. <a href="https://slaptonshop.co.uk" style="color:var(--accent)">slaptonshop.co.uk</a></li>
+          <li><strong>Stokeley Farm Shop, Stokenham</strong> — great fresh produce. <a href="https://stokeleyfarmshop.co.uk" style="color:var(--accent)">stokeleyfarmshop.co.uk</a></li>
+          <li><strong>Petrol station</strong> at East Charleton</li>
+          <li><strong>Dartmouth</strong> — Sainsbury's, Lidl, M&amp;S Food, Co-op</li>
+          <li><strong>Kingsbridge</strong> — Tesco &amp; Morrison's</li>
+          <li><strong>Totnes</strong> — Morrison's plus independent shops</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Ice Cream</div>
+      <div class="block-content"><p><strong>Salcombe Dairy Ice Cream Parlour</strong>, 8 The Quay, Boat Float, Dartmouth — a family favourite. <a href="https://salcombedairy.co.uk" style="color:var(--accent)">salcombedairy.co.uk</a></p></div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Cream Tea</div>
+      <div class="block-content"><p><strong>Cottage Hotel, Hope Cove</strong> — delicious cream tea with stunning sea views. <a href="https://hopecove.com" style="color:var(--accent)">hopecove.com</a></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCAL AREA -->
+<div id="section-area" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">The Local Area</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">Sporting Activities</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Wild Swimming</div><div class="place-note">At any lifeguarded beach or those known for safe swimming</div></div>
+        <div class="place-item"><div class="place-name">Crabbing</div><div class="place-note">Dartmouth, Kingsbridge &amp; Salcombe — lines and bait from local shops</div></div>
+        <div class="place-item"><div class="place-name">Rock Pooling</div><div class="place-note">Blackpool Sands, Sugary Cove, Mattiscombe Sands, Mill Bay</div></div>
+        <div class="place-item"><div class="place-name">Surfing — Bantham Surfing Academy</div><div class="place-note"><a href="https://banthamsurfingacademy.co.uk" style="color:var(--accent)">banthamsurfingacademy.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Fishing</div><div class="place-note"><a href="https://www.theafricanqueen.co.uk" style="color:var(--accent)">theafricanqueen.co.uk</a> (sea) · <a href="https://www.tavistocktroutfishery.co.uk" style="color:var(--accent)">tavistocktroutfishery.co.uk</a> (river)</div></div>
+        <div class="place-item"><div class="place-name">Sailing — Salcombe Dinghy Sailing</div><div class="place-note"><a href="https://salcombedinghysailing.co.uk" style="color:var(--accent)">salcombedinghysailing.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Canoeing — Canoe Adventures</div><div class="place-note"><a href="https://canoeadventures.co.uk" style="color:var(--accent)">canoeadventures.co.uk</a> — Family canoe trips on the Dart estuary</div></div>
+        <div class="place-item"><div class="place-name">Kayaking &amp; Paddleboarding</div><div class="place-note">Hire at Blackpool Sands (01803 770934) and South Milton Sands</div></div>
+        <div class="place-item"><div class="place-name">Golf — Dartmouth Hotel</div><div class="place-note"><a href="https://thedartmouthhotel.co.uk" style="color:var(--accent)">thedartmouthhotel.co.uk</a> or Thurlestone Golf Club</div></div>
+        <div class="place-item"><div class="place-name">Horse Riding — Dittiscombe Equestrian</div><div class="place-note"><a href="https://www.dittiscombeequestrian.co.uk" style="color:var(--accent)">dittiscombeequestrian.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Climbing &amp; Coasteering — Adventure South</div><div class="place-note"><a href="https://www.adventuresouth.co.uk" style="color:var(--accent)">adventuresouth.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Indoor Swimming — Dartmouth Leisure Centre</div><div class="place-note"><a href="https://fusion-lifestyle.com" style="color:var(--accent)">fusion-lifestyle.com</a></div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Family Attractions</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Woodlands Family Theme Park</div><div class="place-note"><a href="https://www.woodlandspark.com" style="color:var(--accent)">woodlandspark.com</a> — Just 15 mins away, great for all ages. Take dry clothes!</div></div>
+        <div class="place-item"><div class="place-name">Slapton Ley Nature Reserve</div><div class="place-note"><a href="https://www.slnnr.org.uk" style="color:var(--accent)">slnnr.org.uk</a> — Largest natural freshwater lake in the South West</div></div>
+        <div class="place-item"><div class="place-name">Pennywell Farm</div><div class="place-note"><a href="https://www.pennywellfarm.co.uk" style="color:var(--accent)">pennywellfarm.co.uk</a> — Book in advance</div></div>
+        <div class="place-item"><div class="place-name">Paignton Zoo</div><div class="place-note"><a href="https://paigntonzoo.org.uk" style="color:var(--accent)">paigntonzoo.org.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Dartmouth Steam Railway</div><div class="place-note"><a href="https://www.dartmouthriverrail.co.uk" style="color:var(--accent)">dartmouthriverrail.co.uk</a> — Estuary &amp; sea views, combine with Greenway</div></div>
+        <div class="place-item"><div class="place-name">South Devon Railway</div><div class="place-note"><a href="https://southdevonrailway.co.uk" style="color:var(--accent)">southdevonrailway.co.uk</a> — Combine with Totnes Castle</div></div>
+        <div class="place-item"><div class="place-name">Dartmouth Castle</div><div class="place-note"><a href="https://www.english-heritage.org.uk" style="color:var(--accent)">english-heritage.org.uk</a> — Ferry from town quay or park at the castle</div></div>
+        <div class="place-item"><div class="place-name">Kents Cavern Prehistoric Caves</div><div class="place-note"><a href="https://www.kents-cavern.co.uk" style="color:var(--accent)">kents-cavern.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">National Marine Aquarium, Plymouth</div><div class="place-note"><a href="https://www.national-aquarium.co.uk" style="color:var(--accent)">national-aquarium.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Babbacombe Model Village</div><div class="place-note"><a href="https://www.model-village.co.uk" style="color:var(--accent)">model-village.co.uk</a> — Dogs welcome</div></div>
+        <div class="place-item"><div class="place-name">River Dart Country Park</div><div class="place-note"><a href="https://www.riverdart.co.uk" style="color:var(--accent)">riverdart.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Escape Rooms — Paignton</div><div class="place-note"><a href="https://www.escape-paignton.co.uk" style="color:var(--accent)">escape-paignton.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Cinemas</div><div class="place-note">Kingsbridge · Dartmouth (The Flavel) · Paignton (Vue)</div></div>
+        <div class="place-item"><div class="place-name">Britannia Royal Naval College Tours</div><div class="place-note"><a href="https://www.britanniaassociation.org.uk/tours" style="color:var(--accent)">britanniaassociation.org.uk</a> — Book in advance, bring photo ID</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Houses &amp; Gardens to Visit</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Greenway — Agatha Christie's House</div><div class="place-note"><a href="https://www.nationaltrust.org.uk" style="color:var(--accent)">nationaltrust.org.uk</a> — Book parking in advance. Reach by steam train or boat from Dartmouth</div></div>
+        <div class="place-item"><div class="place-name">Coleton Fishacre</div><div class="place-note"><a href="https://www.nationaltrust.org.uk" style="color:var(--accent)">nationaltrust.org.uk</a> — Stunning RHS garden with sea glimpses</div></div>
+        <div class="place-item"><div class="place-name">Overbeck's</div><div class="place-note"><a href="https://www.nationaltrust.org.uk" style="color:var(--accent)">nationaltrust.org.uk</a> — Stunning views of the Salcombe Estuary</div></div>
+        <div class="place-item"><div class="place-name">Blackpool Gardens</div><div class="place-note"><a href="https://www.blackpoolsands.co.uk/gardens" style="color:var(--accent)">blackpoolsands.co.uk/gardens</a> — The secret garden next to the beach</div></div>
+        <div class="place-item"><div class="place-name">Buckfast Abbey</div><div class="place-note"><a href="https://www.buckfast.org.uk" style="color:var(--accent)">buckfast.org.uk</a> — Abbey, gardens and monastery on the edge of Dartmoor</div></div>
+        <div class="place-item"><div class="place-name">Cotehele, Cornwall</div><div class="place-note"><a href="https://www.nationaltrust.org.uk" style="color:var(--accent)">nationaltrust.org.uk</a> — Tudor house, working mill, historic quay. Worth the drive</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Interesting Villages &amp; Towns</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Dartmouth</div><div class="place-note">Boats, castle, museums, shopping, pubs and restaurants</div></div>
+        <div class="place-item"><div class="place-name">Kingsbridge</div><div class="place-note">Estuary quay, independent shops, market, pubs</div></div>
+        <div class="place-item"><div class="place-name">Salcombe</div><div class="place-note">Outstanding estuary views, water sports haven</div></div>
+        <div class="place-item"><div class="place-name">Totnes</div><div class="place-note">Fair trade independent shops, Totnes Castle, rich history</div></div>
+        <div class="place-item"><div class="place-name">Brixham</div><div class="place-note">Scenic busy working fishing port</div></div>
+        <div class="place-item"><div class="place-name">Slapton</div><div class="place-note">One of the most beautiful villages in the South Hams</div></div>
+        <div class="place-item"><div class="place-name">Hope Cove</div><div class="place-note">Old fishing village with two sandy beaches</div></div>
+        <div class="place-item"><div class="place-name">Beesands</div><div class="place-note">Unspoilt fishing village with two great food options</div></div>
+        <div class="place-item"><div class="place-name">Hallsands</div><div class="place-note">Walk the coast path to remains of the village destroyed by storm in 1917</div></div>
+        <div class="place-item"><div class="place-name">Burgh Island</div><div class="place-note">Walk at low tide or take the tractor trailer. Tidal road from Aveton Gifford at low tide</div></div>
+        <div class="place-item"><div class="place-name">Ashburton</div><div class="place-note">Gateway to Dartmoor — galleries, bookshops, antique shops</div></div>
+        <div class="place-item"><div class="place-name">Widecombe-on-the-Moor</div><div class="place-note">Pretty Dartmoor village, famous for its annual fair</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Notorious Car Parks</div>
+      <div class="block-content"><p>The car parks at <strong>Hope Cove</strong> and <strong>Bigbury-on-Sea</strong> are notorious for fining people for mistyping registration numbers, overstaying by a minute, or briefly entering without buying a ticket. Don't let this put you off visiting — but take care!</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- BEACHES -->
+<div id="section-beaches" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Beaches</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">Nearby Beaches</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Strete Gate ★ (Dog Friendly)</div><div class="place-note">Our favourite — large, usually very quiet, gravel path, stunning views across Start Bay. Naturally away from roads. NB: naturist beach but most people are clothed!</div></div>
+        <div class="place-item"><div class="place-name">Slapton Sands &amp; Torcross (Dog Friendly)</div><div class="place-note">Very scenic shingle beach, lifeguards in summer. See the Sherman tank raised from the seabed in 1984</div></div>
+        <div class="place-item"><div class="place-name">Blackpool Sands</div><div class="place-note">Blue flag shingle beach, great café, paddle boards and kayaks for hire. No dogs in summer</div></div>
+        <div class="place-item"><div class="place-name">Beesands (Dog Friendly)</div><div class="place-note">Unspoilt, great food options nearby</div></div>
+        <div class="place-item"><div class="place-name">Torcross (Dog Friendly)</div><div class="place-note">On Slapton Sands</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Further Afield</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Mill Bay, East Portlemouth ★ (Dog Friendly)</div><div class="place-note">Family favourite — white sand, turquoise water, stream to dam, rock pools. Foot ferry to Salcombe nearby. Arrive early on busy days</div></div>
+        <div class="place-item"><div class="place-name">South Milton Sands</div><div class="place-note">Sandy beach, kayak &amp; paddleboard hire, beach café, free NT parking</div></div>
+        <div class="place-item"><div class="place-name">Bantham (Dog Friendly Low Tide)</div><div class="place-note">Huge sandy surfing beach. Find the 'Swosh' — natural river swim 2hrs before low tide (wetsuits recommended!)</div></div>
+        <div class="place-item"><div class="place-name">Bigbury (Dog Friendly)</div><div class="place-note">Stunning sandy beach, walk to Burgh Island at low tide</div></div>
+        <div class="place-item"><div class="place-name">Sugary Cove, Dartmouth (Dog Friendly)</div><div class="place-note">Remote shingle and rock beach at the mouth of the Dart</div></div>
+        <div class="place-item"><div class="place-name">North &amp; South Sands, Salcombe (Dog N Sands Low Tide)</div><div class="place-note">Great café at North Sands ('The Winking Prawn')</div></div>
+        <div class="place-item"><div class="place-name">Hope Cove</div><div class="place-note">Scenic former fishing village with two sandy beaches</div></div>
+        <div class="place-item"><div class="place-name">Mattiscombe Sands</div><div class="place-note">Secluded, 2km steep walk from Start Point Car Park. Not suitable for small children or restricted mobility</div></div>
+        <div class="place-item"><div class="place-name">Lannacombe Beach</div><div class="place-note">Very remote and scenic — arrive early to park</div></div>
+        <div class="place-item"><div class="place-name">Landcombe Cove (Secret!)</div><div class="place-note">Between Strete and Blackpool Sands off the coast path. Very steep access paths. Park at Strete, follow coast path north</div></div>
+        <div class="place-item"><div class="place-name">Shoalstone Seawater Pool, Brixham</div><div class="place-note"><a href="https://shoalstonepool.com" style="color:var(--accent)">shoalstonepool.com</a></div></div>
+        <div class="place-item"><div class="place-name">Dartmouth Outdoor Pool</div><div class="place-note"><a href="https://www.dartmouthoutdoorpool.com" style="color:var(--accent)">dartmouthoutdoorpool.com</a></div></div>
+        <div class="place-item"><div class="place-name">Tinside Lido, Plymouth</div><div class="place-note">Considered one of Europe's finest lidos</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WALKS -->
+<div id="section-walks" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Walks &amp; Activities</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">From the Cottage Door</div>
+      <div class="block-content">
+        <p><strong>Gara Valley Loop (30–40 mins, steep)</strong></p>
+        <p>Turn left out of the garden gate, follow the lane down to the river. Cross the bridge and follow the track up the other side of the valley. At the tarmac lane, turn right and follow along the valley back down to a second bridge. Cross and follow the track back up the hill. At the junction, turn left to return to the gate. Steep in places.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Nearby Walks</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Slapton Ley</div><div class="place-note">Walks through the nature reserve and around the Ley including boardwalk routes</div></div>
+        <div class="place-item"><div class="place-name">Dartmouth Castle Loop</div><div class="place-note">Around the headland, partially on the South West Coast Path</div></div>
+        <div class="place-item"><div class="place-name">Gara Rock / Mill Bay</div><div class="place-note">A loop around the headland near the entrance to the Salcombe Estuary</div></div>
+        <div class="place-item"><div class="place-name">Start Bay Lighthouse</div><div class="place-note">Headland walk with a lighthouse and sandy beach</div></div>
+        <div class="place-item"><div class="place-name">Hope Cove / Bolberry / Soar Mill Cove</div><div class="place-note">Long stretch of National Trust land — cliff top walks, stunning views, sandy beaches</div></div>
+        <div class="place-item"><div class="place-name">Bolberry Down to Soar Mill Cove</div><div class="place-note">A favourite walk by the sea</div></div>
+        <div class="place-item"><div class="place-name">Noss Mayo</div><div class="place-note">Headland walk with wild swimming, the 19th century Revelstoke Carriage Drive</div></div>
+        <div class="place-item"><div class="place-name">Dart Estuary</div><div class="place-note">Woodland riverside walks — see the maps in the cottage</div></div>
+        <div class="place-item"><div class="place-name">Dartmoor</div><div class="place-note">Hundreds of miles of off-road tracks and open moorland. Take a map, compass and wet weather gear</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Flat Jogging / Walking Route</div>
+      <div class="block-content">
+        <p>Park at Slapton Ley near the junction with The Line. Head towards Torcross — after the bus stop the path drops down along the Ley. Follow to the Torcross car park. Cross the road and follow the path back at the top of the sea barrier alongside the road. <strong>About 4km.</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div id="section-history" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">History of the Cottage</div>
+  </div>
+  <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">Origins</div>
+      <div class="block-content">
+        <p>Hansel Cottage was built in the <strong>late 16th or early 17th century</strong> as a farm cottage for Hansel, the farmhouse across the lane. There is believed to have been a farm at Hansel dating back to the Domesday Book of 1086, though it is not recorded by name.</p>
+        <p>Originally a three-room cottage (including the adjoining Dormouse Cottage, which probably housed animals), the cottage was extended in the 18th century with the kitchen wing and raised roof to allow for upstairs bedrooms. The wing containing the ground floor bedroom, bathroom and upstairs sitting room was added in the late 20th century.</p>
+        <p>For centuries the parking area would have been a busy farmyard. The neighbouring Hansel Barn was originally a milking barn, and the building housing the utility room and games room was the original pigsty.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">World War II — The South Hams Evacuation</div>
+      <div class="block-content">
+        <p>On <strong>12th November 1943</strong>, the Lord Lieutenant of Devon announced at East Allington Church that 3,000 people from six parishes in the South Hams (centred on Slapton Sands) were to be evacuated, along with their possessions, farm animals and equipment — to allow for US military practice assault landings.</p>
+        <p>The area was chosen for its close resemblance to the Normandy beaches where the D-Day landings would take place. Evacuation was to be complete by 20th December 1943.</p>
+        <p>Many local people had never left their homes before, yet in six weeks everything was moved. In moved <strong>15,000 US troops</strong>, who engaged in battle preparation using live ammunition.</p>
+        <p>On <strong>28th April 1944</strong>, German 'E' boats attacked the practising forces in Start Bay. Many Americans were wounded and approximately 700 were killed. There is a memorial at Slapton Sands, and a Sherman tank raised from the seabed in 1984 at Torcross.</p>
+        <p>The D-Day landings took place in June 1944. It is not known exactly what happened at Hansel Cottage during this period, but the previous owner found an <strong>American officer's revolver in the roots of a fallen tree.</strong></p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Recent History</div>
+      <div class="block-content">
+        <p>The cottage has had several owners since the war. The previous owners held it for more than forty years, making many improvements including the newer wing. The current owners bought the cottage in <strong>2021</strong> and have made further updates including installing central heating and the second upstairs shower room. Future plans include new planting in the walled garden and restoration of the ancient orchard on the lower hillside garden.</p>
+        <p>Children might enjoy reading the Michael Morpurgo novel <em>'The Amazing Story of Adolphus Tips'</em>, set in a farm near Slapton during this period — possibly this very one! There is a copy in the cottage.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAMILY FAVOURITES -->
+<div id="section-favourites" class="view">
+  <div class="section-header">
+    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
+    <div class="section-title">Our Family Favourites</div>
+  </div>
+  <div class="section-body">
+    <div class="highlight-box">Our personal recommendations — please leave your own in the guest book!</div>
+    <div class="section-block">
+      <div class="block-heading">Top Picks</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Cream Tea ☕</div><div class="place-note">Cottage Hotel, Hope Cove — delicious cream tea with stunning sea views. <a href="https://hopecove.com" style="color:var(--accent)">hopecove.com</a></div></div>
+        <div class="place-item"><div class="place-name">Beach for Toddlers &amp; Small Children 👶</div><div class="place-note">Mill Bay, East Portlemouth — white sand, shallow stream to dam, rock pools. A real gem</div></div>
+        <div class="place-item"><div class="place-name">Beach for Teenagers 🏄</div><div class="place-note">Tie between Blackpool Sands (swimming, kayaking, boarding, great café) and Bantham (surfing, the 'Swosh' river swim)</div></div>
+        <div class="place-item"><div class="place-name">Beach for Dogs 🐕</div><div class="place-note">Strete Gate — gravel path, stunning views, the old road to the lost 18th century village of Strete Undercliffe. NB: naturist beach but most people are clothed!</div></div>
+        <div class="place-item"><div class="place-name">Family Day Out 🎢</div><div class="place-note">Woodlands Family Theme Park — 15 mins away, fun from toddlers to teens. <a href="https://www.woodlandspark.com" style="color:var(--accent)">woodlandspark.com</a></div></div>
+        <div class="place-item"><div class="place-name">Family Day on the Water 🚣</div><div class="place-note">Canoe Adventures — crew a BIG canoe on the Dart estuary with a skipper. Pubs, shipwrecks, campfires, wildlife &amp; ice cream. <a href="https://canoeadventures.co.uk" style="color:var(--accent)">canoeadventures.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Pub for Special Occasions 🍽️</div><div class="place-note">Cricket Inn, Beesands — superb food. <a href="https://www.thecricketinn.com" style="color:var(--accent)">thecricketinn.com</a></div></div>
+        <div class="place-item"><div class="place-name">Seafood by the Sea 🦞</div><div class="place-note">Britannia at the Beach, Beesands — eat in or takeaway at beachside tables. <a href="https://britanniaatthebeach.co.uk" style="color:var(--accent)">britanniaatthebeach.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Pub with Character 🍺</div><div class="place-note">Tower Inn, Slapton — hidden courtyard, outdoor in summer or log fire in winter. <a href="https://www.thetowerinn.com" style="color:var(--accent)">thetowerinn.com</a></div></div>
+        <div class="place-item"><div class="place-name">Pub with a View 🌅</div><div class="place-note">Kings Arms, Strete (45-min walk through lanes and fields) or The Ferry Inn, Salcombe. Both stunning</div></div>
+        <div class="place-item"><div class="place-name">Country House 🏛️</div><div class="place-note">Greenway — Agatha Christie's home overlooking the Dart Estuary. <a href="https://nationaltrust.org.uk" style="color:var(--accent)">nationaltrust.org.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Garden to Visit 🌿</div><div class="place-note">Coleton Fishacre — RHS accredited garden with sea glimpses, tranquil ponds, exotic plants. <a href="https://nationaltrust.org.uk" style="color:var(--accent)">nationaltrust.org.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Steam Trip 🚂</div><div class="place-note">Kingswear to Paignton — estuary and sea views. <a href="https://dartmouthriverrail.co.uk" style="color:var(--accent)">dartmouthriverrail.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Rainy Day 🌧️</div><div class="place-note">Swimming at Dartmouth Leisure Centre + cinema or escape room in Paignton. Or the aquarium in Plymouth or ten-pin bowling in Torquay</div></div>
+        <div class="place-item"><div class="place-name">Ice Cream 🍦</div><div class="place-note">Salcombe Dairy Ice Cream Parlour, 8 The Quay, Dartmouth. Fantastic! <a href="https://salcombedairy.co.uk" style="color:var(--accent)">salcombedairy.co.uk</a></div></div>
+        <div class="place-item"><div class="place-name">Secret Beach 🤫</div><div class="place-note">Landcombe Cove — between Strete and Blackpool Sands. Park at Strete and follow the coast path north. Very steep paths</div></div>
+        <div class="place-item"><div class="place-name">Letterboxing on Dartmoor 📮</div><div class="place-note"><a href="https://dartmoorletterboxing.org" style="color:var(--accent)">dartmoorletterboxing.org</a></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav>
+  <div class="nav-item active" id="nav-home" onclick="showView('home')">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Home
+  </div>
+  <div class="nav-item" id="nav-info" onclick="showView('info')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Info
+  </div>
+  <div class="nav-item" id="nav-map" onclick="showView('map')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 018 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 018-8z"/></svg>
+    Map
+  </div>
+  <div class="nav-item" id="nav-search" onclick="showView('search')">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Search
+  </div>
+</nav>
+
+<script>
+const SECTIONS = [
+  'welcome','checkout','arrival','about','utilities','appliances',
+  'wifi','safety','dogs','emergency','eating','area','beaches','walks','history','favourites'
+];
+const SECTION_LABELS = {
+  welcome:'Welcome', checkout:'Before You Leave', arrival:'Arrival & Check-In',
+  about:'About the Cottage', utilities:'Utilities & Heating', appliances:'Appliances & TV',
+  wifi:'WiFi & Phones', safety:'Safety & House Rules', dogs:'Dogs Welcome',
+  emergency:'Useful Contacts', eating:'Eating & Drinking Out', area:'The Local Area',
+  beaches:'Beaches', walks:'Walks & Activities', history:'History of the Cottage',
+  favourites:'Our Family Favourites'
+};
+
+let currentView = 'home';
+
+function showView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  document.getElementById('nav-' + v).classList.add('active');
+  window.scrollTo(0,0);
+  currentView = v;
+  if (v === 'search') {
+    setTimeout(() => document.getElementById('search-input').focus(), 100);
+  }
+}
+
+function showSection(s) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('section-' + s).classList.add('active');
+  document.getElementById('nav-home').classList.add('active');
+  window.scrollTo(0,0);
+  currentView = 'section-' + s;
+}
+
+function goHome() {
+  showView('home');
+}
+
+// Build info section list
+const isl = document.getElementById('info-section-list');
+SECTIONS.forEach(s => {
+  const d = document.createElement('div');
+  d.className = 'search-result-item';
+  d.innerHTML = '<div class="sri-text" style="font-weight:500">' + SECTION_LABELS[s] + '</div>';
+  d.onclick = () => showSection(s);
+  isl.appendChild(d);
+});
+
+// Search
+const SEARCH_INDEX = [];
+SECTIONS.forEach(s => {
+  const el = document.getElementById('section-' + s);
+  const texts = el.querySelectorAll('p, li, .place-name, .place-note, .ec-title, .ec-detail, .info-value, .block-heading');
+  texts.forEach(t => {
+    const txt = t.textContent.trim();
+    if (txt.length > 5) {
+      SEARCH_INDEX.push({ section: s, label: SECTION_LABELS[s], text: txt });
+    }
+  });
+});
+
+function doSearch(q) {
+  const container = document.getElementById('search-results');
+  if (!q || q.length < 2) { container.innerHTML = ''; return; }
+  const lq = q.toLowerCase();
+  const hits = SEARCH_INDEX.filter(e => e.text.toLowerCase().includes(lq));
+  // deduplicate by section + snippet
+  const seen = new Set();
+  const unique = hits.filter(h => {
+    const key = h.section + '|' + h.text.slice(0,40);
+    if (seen.has(key)) return false;
+    seen.add(key); return true;
+  }).slice(0, 25);
+
+  if (!unique.length) {
+    container.innerHTML = '<div class="no-results">No results for "' + q + '"</div>';
+    return;
+  }
+  container.innerHTML = unique.map(h => {
+    const hi = h.text.replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi'), '<em>$1</em>');
+    return '<div class="search-result-item" onclick="showSection(\'' + h.section + '\')">'
+      + '<div class="sri-section">' + h.label + '</div>'
+      + '<div class="sri-text">' + hi.slice(0, 120) + (hi.length > 120 ? '…' : '') + '</div>'
+      + '</div>';
+  }).join('');
+}
+</script>
+</body>
+</html>
