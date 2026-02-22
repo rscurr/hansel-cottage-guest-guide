@@ -280,12 +280,7 @@
 
     <div class="card" onclick="showSection('utilities')">
       <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg></div>
-      <div class="card-label">Utilities &amp; Heating</div>
-    </div>
-
-    <div class="card" onclick="showSection('appliances')">
-      <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-      <div class="card-label">Appliances &amp; TV</div>
+      <div class="card-label">Utilities &amp; Appliances</div>
     </div>
 
     <div class="card" onclick="showSection('wifi')">
@@ -313,19 +308,9 @@
       <div class="card-label">Eating &amp; Drinking Out</div>
     </div>
 
-    <div class="card" onclick="showSection('area')">
-      <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 018 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 018-8z"/></svg></div>
-      <div class="card-label">The Local Area</div>
-    </div>
-
-    <div class="card" onclick="showSection('beaches')">
-      <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><path d="M18 8c0 3-2 5-6 6"/><path d="M22 8c-1.5 5-5 8-10 9"/><path d="M3 20c2-4 5-7 9-8"/></svg></div>
-      <div class="card-label">Beaches</div>
-    </div>
-
-    <div class="card" onclick="showSection('walks')">
-      <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M15.89 8.11A2 2 0 0014 7h-4a2 2 0 00-1.95 1.55L7 13h2l1 8h4l1-8h2l-1.11-4.89z"/></svg></div>
-      <div class="card-label">Walks &amp; Activities</div>
+    <div class="card" onclick="showSection('todo')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+      <div class="card-label">Things to Do</div>
     </div>
 
     <div class="card" onclick="showSection('history')">
@@ -336,6 +321,11 @@
     <div class="card" onclick="showSection('favourites')">
       <div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
       <div class="card-label">Our Family Favourites</div>
+    </div>
+
+    <div class="card" onclick="window.open('https://hanselcottage.com/availability','_blank')">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <div class="card-label">Book Again</div>
     </div>
 
   </div>
@@ -553,7 +543,7 @@
 <div id="section-utilities" class="view">
   <div class="section-header">
     <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
-    <div class="section-title">Utilities &amp; Heating</div>
+    <div class="section-title">Utilities &amp; Appliances</div>
   </div>
   <div class="section-body">
     <div class="section-block">
@@ -607,16 +597,6 @@
       <div class="block-heading">Emergency Torches</div>
       <div class="block-content"><p>Six emergency torches are plugged in around the house. They act as night lights and activate in a power failure. Please do not remove them or let children play with them. They have multiple modes — adjust with the side switch if the light is annoying.</p></div>
     </div>
-  </div>
-</div>
-
-<!-- APPLIANCES -->
-<div id="section-appliances" class="view">
-  <div class="section-header">
-    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
-    <div class="section-title">Appliances &amp; TV</div>
-  </div>
-  <div class="section-body">
     <div class="highlight-box">Full appliance manuals are in the <strong>top drawer of the chest of drawers in the Dining Hall</strong>.</div>
     <div class="section-block">
       <div class="block-heading">Oven</div>
@@ -970,13 +950,68 @@
   </div>
 </div>
 
-<!-- LOCAL AREA -->
-<div id="section-area" class="view">
+<!-- THINGS TO DO -->
+<div id="section-todo" class="view">
   <div class="section-header">
     <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
-    <div class="section-title">The Local Area</div>
+    <div class="section-title">Things to Do</div>
   </div>
   <div class="section-body">
+    <div class="section-block">
+      <div class="block-heading">Nearby Beaches</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Strete Gate ★ (Dog Friendly)</div><div class="place-note">Our favourite — large, usually very quiet, gravel path, stunning views across Start Bay. Naturally away from roads. NB: naturist beach but most people are clothed!</div></div>
+        <div class="place-item"><div class="place-name">Slapton Sands &amp; Torcross (Dog Friendly)</div><div class="place-note">Very scenic shingle beach, lifeguards in summer. See the Sherman tank raised from the seabed in 1984</div></div>
+        <div class="place-item"><div class="place-name">Blackpool Sands</div><div class="place-note">Blue flag shingle beach, great café, paddle boards and kayaks for hire. No dogs in summer</div></div>
+        <div class="place-item"><div class="place-name">Beesands (Dog Friendly)</div><div class="place-note">Unspoilt, great food options nearby</div></div>
+        <div class="place-item"><div class="place-name">Torcross (Dog Friendly)</div><div class="place-note">On Slapton Sands</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Beaches Further Afield</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Mill Bay, East Portlemouth ★ (Dog Friendly)</div><div class="place-note">Family favourite — white sand, turquoise water, stream to dam, rock pools. Foot ferry to Salcombe nearby. Arrive early on busy days</div></div>
+        <div class="place-item"><div class="place-name">South Milton Sands</div><div class="place-note">Sandy beach, kayak &amp; paddleboard hire, beach café, free NT parking</div></div>
+        <div class="place-item"><div class="place-name">Bantham (Dog Friendly Low Tide)</div><div class="place-note">Huge sandy surfing beach. Find the 'Swosh' — natural river swim 2hrs before low tide (wetsuits recommended!)</div></div>
+        <div class="place-item"><div class="place-name">Bigbury (Dog Friendly)</div><div class="place-note">Stunning sandy beach, walk to Burgh Island at low tide</div></div>
+        <div class="place-item"><div class="place-name">Sugary Cove, Dartmouth (Dog Friendly)</div><div class="place-note">Remote shingle and rock beach at the mouth of the Dart</div></div>
+        <div class="place-item"><div class="place-name">North &amp; South Sands, Salcombe (Dog N Sands Low Tide)</div><div class="place-note">Great café at North Sands ('The Winking Prawn')</div></div>
+        <div class="place-item"><div class="place-name">Hope Cove</div><div class="place-note">Scenic former fishing village with two sandy beaches</div></div>
+        <div class="place-item"><div class="place-name">Mattiscombe Sands</div><div class="place-note">Secluded, 2km steep walk from Start Point Car Park. Not suitable for small children or restricted mobility</div></div>
+        <div class="place-item"><div class="place-name">Lannacombe Beach</div><div class="place-note">Very remote and scenic — arrive early to park</div></div>
+        <div class="place-item"><div class="place-name">Landcombe Cove (Secret!)</div><div class="place-note">Between Strete and Blackpool Sands off the coast path. Very steep access paths. Park at Strete, follow coast path north</div></div>
+        <div class="place-item"><div class="place-name">Shoalstone Seawater Pool, Brixham</div><div class="place-note"><a href="https://shoalstonepool.com" style="color:var(--accent)">shoalstonepool.com</a></div></div>
+        <div class="place-item"><div class="place-name">Dartmouth Outdoor Pool</div><div class="place-note"><a href="https://www.dartmouthoutdoorpool.com" style="color:var(--accent)">dartmouthoutdoorpool.com</a></div></div>
+        <div class="place-item"><div class="place-name">Tinside Lido, Plymouth</div><div class="place-note">Considered one of Europe's finest lidos</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Walks from the Cottage Door</div>
+      <div class="block-content">
+        <p><strong>Gara Valley Loop (30–40 mins, steep)</strong></p>
+        <p>Turn left out of the garden gate, follow the lane down to the river. Cross the bridge and follow the track up the other side of the valley. At the tarmac lane, turn right and follow along the valley back down to a second bridge. Cross and follow the track back up the hill. At the junction, turn left to return to the gate. Steep in places.</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Nearby Walks</div>
+      <div class="block-content">
+        <div class="place-item"><div class="place-name">Slapton Ley</div><div class="place-note">Walks through the nature reserve and around the Ley including boardwalk routes</div></div>
+        <div class="place-item"><div class="place-name">Dartmouth Castle Loop</div><div class="place-note">Around the headland, partially on the South West Coast Path</div></div>
+        <div class="place-item"><div class="place-name">Gara Rock / Mill Bay</div><div class="place-note">A loop around the headland near the entrance to the Salcombe Estuary</div></div>
+        <div class="place-item"><div class="place-name">Start Bay Lighthouse</div><div class="place-note">Headland walk with a lighthouse and sandy beach</div></div>
+        <div class="place-item"><div class="place-name">Hope Cove / Bolberry / Soar Mill Cove</div><div class="place-note">Long stretch of National Trust land — cliff top walks, stunning views, sandy beaches</div></div>
+        <div class="place-item"><div class="place-name">Bolberry Down to Soar Mill Cove</div><div class="place-note">A favourite walk by the sea</div></div>
+        <div class="place-item"><div class="place-name">Noss Mayo</div><div class="place-note">Headland walk with wild swimming, the 19th century Revelstoke Carriage Drive</div></div>
+        <div class="place-item"><div class="place-name">Dart Estuary</div><div class="place-note">Woodland riverside walks — see the maps in the cottage</div></div>
+        <div class="place-item"><div class="place-name">Dartmoor</div><div class="place-note">Hundreds of miles of off-road tracks and open moorland. Take a map, compass and wet weather gear</div></div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="block-heading">Flat Jogging / Walking Route</div>
+      <div class="block-content">
+        <p>Park at Slapton Ley near the junction with The Line. Head towards Torcross — after the bus stop the path drops down along the Ley. Follow to the Torcross car park. Cross the road and follow the path back at the top of the sea barrier alongside the road. <strong>About 4km.</strong></p>
+      </div>
+    </div>
     <div class="section-block">
       <div class="block-heading">Sporting Activities</div>
       <div class="block-content">
@@ -992,6 +1027,7 @@
         <div class="place-item"><div class="place-name">Horse Riding — Dittiscombe Equestrian</div><div class="place-note"><a href="https://www.dittiscombeequestrian.co.uk" style="color:var(--accent)">dittiscombeequestrian.co.uk</a></div></div>
         <div class="place-item"><div class="place-name">Climbing &amp; Coasteering — Adventure South</div><div class="place-note"><a href="https://www.adventuresouth.co.uk" style="color:var(--accent)">adventuresouth.co.uk</a></div></div>
         <div class="place-item"><div class="place-name">Indoor Swimming — Dartmouth Leisure Centre</div><div class="place-note"><a href="https://fusion-lifestyle.com" style="color:var(--accent)">fusion-lifestyle.com</a></div></div>
+        <div class="place-item"><div class="place-name">Letterboxing on Dartmoor 📮</div><div class="place-note"><a href="https://dartmoorletterboxing.org" style="color:var(--accent)">dartmoorletterboxing.org</a></div></div>
       </div>
     </div>
     <div class="section-block">
@@ -1048,80 +1084,6 @@
   </div>
 </div>
 
-<!-- BEACHES -->
-<div id="section-beaches" class="view">
-  <div class="section-header">
-    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
-    <div class="section-title">Beaches</div>
-  </div>
-  <div class="section-body">
-    <div class="section-block">
-      <div class="block-heading">Nearby Beaches</div>
-      <div class="block-content">
-        <div class="place-item"><div class="place-name">Strete Gate ★ (Dog Friendly)</div><div class="place-note">Our favourite — large, usually very quiet, gravel path, stunning views across Start Bay. Naturally away from roads. NB: naturist beach but most people are clothed!</div></div>
-        <div class="place-item"><div class="place-name">Slapton Sands &amp; Torcross (Dog Friendly)</div><div class="place-note">Very scenic shingle beach, lifeguards in summer. See the Sherman tank raised from the seabed in 1984</div></div>
-        <div class="place-item"><div class="place-name">Blackpool Sands</div><div class="place-note">Blue flag shingle beach, great café, paddle boards and kayaks for hire. No dogs in summer</div></div>
-        <div class="place-item"><div class="place-name">Beesands (Dog Friendly)</div><div class="place-note">Unspoilt, great food options nearby</div></div>
-        <div class="place-item"><div class="place-name">Torcross (Dog Friendly)</div><div class="place-note">On Slapton Sands</div></div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="block-heading">Further Afield</div>
-      <div class="block-content">
-        <div class="place-item"><div class="place-name">Mill Bay, East Portlemouth ★ (Dog Friendly)</div><div class="place-note">Family favourite — white sand, turquoise water, stream to dam, rock pools. Foot ferry to Salcombe nearby. Arrive early on busy days</div></div>
-        <div class="place-item"><div class="place-name">South Milton Sands</div><div class="place-note">Sandy beach, kayak &amp; paddleboard hire, beach café, free NT parking</div></div>
-        <div class="place-item"><div class="place-name">Bantham (Dog Friendly Low Tide)</div><div class="place-note">Huge sandy surfing beach. Find the 'Swosh' — natural river swim 2hrs before low tide (wetsuits recommended!)</div></div>
-        <div class="place-item"><div class="place-name">Bigbury (Dog Friendly)</div><div class="place-note">Stunning sandy beach, walk to Burgh Island at low tide</div></div>
-        <div class="place-item"><div class="place-name">Sugary Cove, Dartmouth (Dog Friendly)</div><div class="place-note">Remote shingle and rock beach at the mouth of the Dart</div></div>
-        <div class="place-item"><div class="place-name">North &amp; South Sands, Salcombe (Dog N Sands Low Tide)</div><div class="place-note">Great café at North Sands ('The Winking Prawn')</div></div>
-        <div class="place-item"><div class="place-name">Hope Cove</div><div class="place-note">Scenic former fishing village with two sandy beaches</div></div>
-        <div class="place-item"><div class="place-name">Mattiscombe Sands</div><div class="place-note">Secluded, 2km steep walk from Start Point Car Park. Not suitable for small children or restricted mobility</div></div>
-        <div class="place-item"><div class="place-name">Lannacombe Beach</div><div class="place-note">Very remote and scenic — arrive early to park</div></div>
-        <div class="place-item"><div class="place-name">Landcombe Cove (Secret!)</div><div class="place-note">Between Strete and Blackpool Sands off the coast path. Very steep access paths. Park at Strete, follow coast path north</div></div>
-        <div class="place-item"><div class="place-name">Shoalstone Seawater Pool, Brixham</div><div class="place-note"><a href="https://shoalstonepool.com" style="color:var(--accent)">shoalstonepool.com</a></div></div>
-        <div class="place-item"><div class="place-name">Dartmouth Outdoor Pool</div><div class="place-note"><a href="https://www.dartmouthoutdoorpool.com" style="color:var(--accent)">dartmouthoutdoorpool.com</a></div></div>
-        <div class="place-item"><div class="place-name">Tinside Lido, Plymouth</div><div class="place-note">Considered one of Europe's finest lidos</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- WALKS -->
-<div id="section-walks" class="view">
-  <div class="section-header">
-    <div class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</div>
-    <div class="section-title">Walks &amp; Activities</div>
-  </div>
-  <div class="section-body">
-    <div class="section-block">
-      <div class="block-heading">From the Cottage Door</div>
-      <div class="block-content">
-        <p><strong>Gara Valley Loop (30–40 mins, steep)</strong></p>
-        <p>Turn left out of the garden gate, follow the lane down to the river. Cross the bridge and follow the track up the other side of the valley. At the tarmac lane, turn right and follow along the valley back down to a second bridge. Cross and follow the track back up the hill. At the junction, turn left to return to the gate. Steep in places.</p>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="block-heading">Nearby Walks</div>
-      <div class="block-content">
-        <div class="place-item"><div class="place-name">Slapton Ley</div><div class="place-note">Walks through the nature reserve and around the Ley including boardwalk routes</div></div>
-        <div class="place-item"><div class="place-name">Dartmouth Castle Loop</div><div class="place-note">Around the headland, partially on the South West Coast Path</div></div>
-        <div class="place-item"><div class="place-name">Gara Rock / Mill Bay</div><div class="place-note">A loop around the headland near the entrance to the Salcombe Estuary</div></div>
-        <div class="place-item"><div class="place-name">Start Bay Lighthouse</div><div class="place-note">Headland walk with a lighthouse and sandy beach</div></div>
-        <div class="place-item"><div class="place-name">Hope Cove / Bolberry / Soar Mill Cove</div><div class="place-note">Long stretch of National Trust land — cliff top walks, stunning views, sandy beaches</div></div>
-        <div class="place-item"><div class="place-name">Bolberry Down to Soar Mill Cove</div><div class="place-note">A favourite walk by the sea</div></div>
-        <div class="place-item"><div class="place-name">Noss Mayo</div><div class="place-note">Headland walk with wild swimming, the 19th century Revelstoke Carriage Drive</div></div>
-        <div class="place-item"><div class="place-name">Dart Estuary</div><div class="place-note">Woodland riverside walks — see the maps in the cottage</div></div>
-        <div class="place-item"><div class="place-name">Dartmoor</div><div class="place-note">Hundreds of miles of off-road tracks and open moorland. Take a map, compass and wet weather gear</div></div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="block-heading">Flat Jogging / Walking Route</div>
-      <div class="block-content">
-        <p>Park at Slapton Ley near the junction with The Line. Head towards Torcross — after the bus stop the path drops down along the Ley. Follow to the Torcross car park. Cross the road and follow the path back at the top of the sea barrier alongside the road. <strong>About 4km.</strong></p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- HISTORY -->
 <div id="section-history" class="view">
@@ -1220,10 +1182,9 @@ const SECTIONS = [
 ];
 const SECTION_LABELS = {
   welcome:'Welcome', checkout:'Before You Leave', arrival:'Arrival & Check-In',
-  about:'About the Cottage', utilities:'Utilities & Heating', appliances:'Appliances & TV',
+  about:'About the Cottage', utilities:'Utilities & Appliances',
   wifi:'WiFi & Phones', safety:'Safety & House Rules', dogs:'Dogs Welcome',
-  emergency:'Useful Contacts', eating:'Eating & Drinking Out', area:'The Local Area',
-  beaches:'Beaches', walks:'Walks & Activities', history:'History of the Cottage',
+  emergency:'Useful Contacts', eating:'Eating & Drinking Out', todo:'Things to Do', history:'History of the Cottage',
   favourites:'Our Family Favourites'
 };
 
